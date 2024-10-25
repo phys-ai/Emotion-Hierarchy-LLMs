@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title>Storytelling with a Chord Diagram - Switching between Phone Brands</title>
+    	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="body">
+        <div class="chart-container">
+            <div id="chart0"></div>
+            <div id="chart1"></div>
+            <div id="chart2"></div>
+            <div id="chart3"></div>
+            <div id="chart4"></div>
+            <div id="chart5"></div>
+        </div>
+    </div>
+
+    <style>
+        .chart-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 0px;
+        }
+    </style>
+    <script src="matrix.js"></script>
+    <script src="chords.js"></script>
+   </body>
+</html>

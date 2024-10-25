@@ -1,0 +1,3 @@
+The "Storytelling with Data" version of a Chord Diagram about the Switching Behavior between Phone Brands as used in my blog on [Using Data Storytelling with a Chord Diagram](http://www.visualcinnamon.com/2014/12/using-data-storytelling-with-chord.html). It aims to explain how to understand the visualization to someone who has never seen a Chord Diagram before
+
+It shows the flows of people between the phone brand of their previous phone and the current phone, based on data from the Dutch respondents of the Global Mobile Consumer Survey held in 2014 by Deloitte
