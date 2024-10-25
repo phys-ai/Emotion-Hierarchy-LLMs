@@ -104,7 +104,7 @@ function drawChordDiagram(matrix, label, containerId) {
     /*Add the labels for the %'s*/
     ticks.append("svg:text")
     	.attr("x", 8)
-    	.attr("dy", ".15em")
+    	.attr("dy", ".1em")
     	.attr("class", "tickLabels")
     	.attr("transform", function(d) { return d.angle > Math.PI ? "rotate(180)translate(-16)" : null; })
     	.style("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
@@ -117,7 +117,7 @@ function drawChordDiagram(matrix, label, containerId) {
     
     g.append("svg:text")
       .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
-      .attr("dy", ".5em")
+      .attr("dy", ".3em")
       .style("font-size", "9px")
       .attr("class", "titles")
       .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
@@ -164,7 +164,7 @@ function drawChordDiagram(matrix, label, containerId) {
 
     setTimeout(function() {
         finalChord(svg, chords, containerId);
-    }, 200);
+    }, 100);
 };
 
 

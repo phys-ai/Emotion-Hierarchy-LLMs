@@ -9,16 +9,6 @@ import re
 
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-CONFIG.set_default_api_key("7e0a70b7891d4f6fb166e3402d4c7b9c")
-login(token="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")
-openai.api_key = "sk-proj-etUFtXtNu3S71ya5bB2OT3BlbkFJqa0Xexgiujo7oH60R7Wr"
-
-client = openai.OpenAI(
-    api_key="LA-ba4d1f8998ea4ea6b382ef78e400c02d8259a2c366504b35881451a50972d8d6",
-    base_url="https://api.llama-api.com"
-)
-
-thing = "acorn" 
 persona_salesperson = (
     f"You are a salesperson. You have a single {thing} in your hand. "
     f"Please reply to the customer to sell this {thing} for the highest possible price using your sales techniques. "

@@ -6,4 +6,5 @@ data/
 *.key
 .ipynb_checkpoints/
 .DS_Store
+notebooks/
 __pycache__/

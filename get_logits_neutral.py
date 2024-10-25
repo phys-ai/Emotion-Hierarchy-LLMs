@@ -7,8 +7,6 @@ import torch
 import more_itertools
 
 
-CONFIG.set_default_api_key("7e0a70b7891d4f6fb166e3402d4c7b9c")
-os.environ['HF_TOKEN'] = "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"
 
 prompt_name = 'chatgpt4o_scenario_neutral'
 emotion_prompt = "\nAs a person with Autism Spectrum Disorder, I think the emotion involved in this situation is"
