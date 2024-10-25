@@ -2,11 +2,8 @@ cache/
 cache1/
 figures/
 _old/
-*/*.pkl
 data/
-notebooks/
 *.key
 .ipynb_checkpoints/
 .DS_Store
-*/*/*.pt
 __pycache__/
