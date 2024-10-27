@@ -20,9 +20,9 @@ var fill = d3.scale.ordinal()
     .range(colors);
 
 
-var selector = d3.select("#matrixSelector");
+var selector1 = d3.select("#matrixSelector");
 matrices.forEach(function(matrixData, index) {
-    selector.append("option")
+    selector1.append("option")
         .attr("value", index)
         .text(matrixData.label);
 });
@@ -31,7 +31,7 @@ var currentIndex = 0;
 d3.select("#chart1").selectAll("*").remove();
 drawChordDiagram(matrices[currentIndex].data, matrices[currentIndex].label, 1);
 
-selector.on("change", function() {
+selector1.on("change", function() {
     currentIndex = +this.value;
     d3.select("#chart1").selectAll("*").remove();
     drawChordDiagram(matrices[currentIndex].data, matrices[currentIndex].label, 1);
