@@ -8,9 +8,9 @@ var treeDatas = [
 ];
 
 var selector0 = d3.select("#treeSelector");
-treeDatas.forEach(function(treeData, index) {
+treeDatas.forEach(function(treeData, index0) {
     selector0.append("option")
-        .attr("value", index)
+        .attr("value", index0)
         .text(treeData.label);
 });
 
@@ -63,8 +63,8 @@ function drawTree(graphData) {
     const angleIncrement = (2 * Math.PI) / graphData.nodes.length;
 
     // Assign initial circular positions based on sorted colors
-    graphData.nodes.forEach((node, index) => {
-        const angle = index * angleIncrement;
+    graphData.nodes.forEach((node, index1) => {
+        const angle = index1 * angleIncrement;
         node.initialX = centerX + radius * Math.cos(angle);
         node.initialY = centerY + radius * Math.sin(angle);
     });
