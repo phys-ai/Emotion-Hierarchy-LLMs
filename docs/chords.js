@@ -3,8 +3,13 @@
 //////////////////////////////////////////////////////////*/
 var matrices = [
     { data: matrix_neutral, label: "Neutral" },
+    { data: matrix_female, label: "Female" },
+    { data: matrix_male, label: "Male" },
     { data: matrix_asian, label: "Asian" },
+    { data: matrix_american, label: "American" },
     { data: matrix_disable, label: "Physically-disabled" }, 
+    { data: matrix_income_low, label: "Low income" }, 
+    { data: matrix_income_high, label: "High income" },
     { data: matrix_education_low, label: "Low education" }, 
     { data: matrix_education_high, label: "High education" }
 ];
@@ -14,18 +19,30 @@ var fill = d3.scale.ordinal()
     .domain(d3.range(NameProvider.length))
     .range(colors);
 
+
+var selector = d3.select("#matrixSelector");
+matrices.forEach(function(matrixData, index) {
+    selector.append("option")
+        .attr("value", index)
+        .text(matrixData.label);
+});
+
+var currentIndex = 0;
+d3.select("#chart1").selectAll("*").remove();
+drawChordDiagram(matrices[currentIndex].data, matrices[currentIndex].label, 1);
+
+selector.on("change", function() {
+    currentIndex = +this.value;
+    d3.select("#chart1").selectAll("*").remove();
+    drawChordDiagram(matrices[currentIndex].data, matrices[currentIndex].label, 1);
+});
+/*
 matrices.forEach(function(matrixData, index) {
     var containerId = index;
     var matrix = matrices[index].data
     var label = matrices[index].label
     drawChordDiagram(matrix, label, containerId);
 });
-/*
-var index = 0;
-var containerId = index;
-var matrix = matrices[index].data
-var label = matrices[index].label
-drawChordDiagram(matrix, label, containerId);
 */
 
 /*//////////////////////////////////////////////////////////
@@ -33,18 +50,18 @@ drawChordDiagram(matrix, label, containerId);
 //////////////////////////////////////////////////////////*/
 var counter = 1,
     opacityValueBase = 0.7,
-    opacityValue = 0.4;
+    opacityValue = 0.3;
 
 function drawChordDiagram(matrix, label, containerId) {
 
-    var margin = {top: 90, right: 90, bottom: 70, left: 90},
-        width = 430 - margin.left - margin.right,
-        height = 430 - margin.top - margin.bottom,
+    var margin = {top: 100, right: 70, bottom: 80, left: 70},
+        width = 730 - margin.left - margin.right,
+        height = 650 - margin.top - margin.bottom,
         innerRadius = Math.min(width, height) * .42,
         outerRadius = innerRadius * 1.04;
 
     /*Initiate the SVG*/
-    var svg = d3.select("#chart" + containerId).append("svg:svg")
+    var svg = d3.select("#chart1").append("svg:svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
     	.append("svg:g")
@@ -74,13 +91,12 @@ function drawChordDiagram(matrix, label, containerId) {
     	  .style("fill", function(d) { return fill(d.index); })
     	  .attr("d", arc)
     	  .style("opacity", 0)
-    	  .transition().duration(1000)
+    	  .transition().duration(100)
     	  .style("opacity", 0.4);
     
     /*//////////////////////////////////////////////////////////
     ////////////////// Initiate Ticks //////////////////////////
     //////////////////////////////////////////////////////////*/
-    
     var ticks = svg.selectAll("g.group").append("svg:g")
     	.attr("class", function(d) {return "ticks " + NameProvider[d.index];})
     	.selectAll("g.ticks")
@@ -89,7 +105,7 @@ function drawChordDiagram(matrix, label, containerId) {
     	.enter().append("svg:g")
         .attr("transform", function(d) {
           return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
-              + "translate(" + outerRadius+40 + ",0)";
+              + "translate(" + outerRadius+35 + ",0)";
         });
     
     /*Append the tick around the arcs*/
@@ -108,22 +124,25 @@ function drawChordDiagram(matrix, label, containerId) {
     	.attr("class", "tickLabels")
     	.attr("transform", function(d) { return d.angle > Math.PI ? "rotate(180)translate(-16)" : null; })
     	.style("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
+        .style("font-size", "7px")
     	.text(function(d) { return d.label; })
     	.attr('opacity', 0);
     	
     /*//////////////////////////////////////////////////////////
     ////////////////// Initiate Names //////////////////////////
     //////////////////////////////////////////////////////////*/
-    
     g.append("svg:text")
-      .each(function(d) { d.angle = (d.startAngle + d.endAngle) / 2; })
+       .each(function(d) {
+            d.angle = (d.startAngle + d.endAngle) / 2;
+            d.fontSize = Math.max(7, Math.min(16, Math.abs(d.startAngle - d.endAngle) * 50)); // Adjust scaling factors as needed
+          })
       .attr("dy", ".3em")
-      .style("font-size", "9px")
+      .style("font-size", function(d) { return d.fontSize + "px"; })
       .attr("class", "titles")
       .attr("text-anchor", function(d) { return d.angle > Math.PI ? "end" : null; })
       .attr("transform", function(d) {
     		return "rotate(" + (d.angle * 180 / Math.PI - 90) + ")"
-    		+ "translate(" + (innerRadius + 55) + ")"
+    		+ "translate(" + (innerRadius + 45) + ")"
     		+ (d.angle > Math.PI ? "rotate(180)" : "");
       })
       .attr('opacity', 0)
@@ -132,7 +151,6 @@ function drawChordDiagram(matrix, label, containerId) {
     /*//////////////////////////////////////////////////////////
     //////////////// Initiate inner chords /////////////////////
     //////////////////////////////////////////////////////////*/
-    
     var chords = svg.selectAll("path.chord")
     	.data(chord.chords)
     	.enter().append("svg:path")
@@ -163,12 +181,12 @@ function drawChordDiagram(matrix, label, containerId) {
     	.call(wrap, 350);
 
     setTimeout(function() {
-        finalChord(svg, chords, containerId);
-    }, 100);
+        finalChord(svg, chords);
+    }, 20);
 };
 
 
-function finalChord(svg, chords, containerId) {
+function finalChord(svg, chords) {
 
 	/*changeTopText(newText = "",
 		loc = 0, delayDisappear = 0, delayAppear = 1);*/
@@ -183,7 +201,7 @@ function finalChord(svg, chords, containerId) {
 	
 	/*Create arcs or show them, depending on the point in the visual*/
 	svg.selectAll("g.group").select("path")
-		.transition().duration(1000)
+		.transition().duration(100)
 		.style("opacity", 1);
 	
 	/*Make mouse over and out possible*/
@@ -191,7 +209,7 @@ function finalChord(svg, chords, containerId) {
 		.on("mouseover", fade(.02, svg))
 		.on("mouseout", fade(.80, svg));*/
     
-        d3.select("#chart" + containerId).selectAll(".group")
+        d3.select("#chart1").selectAll(".group")
             .on("mouseover", function(d, i) {
                 fade(.02, svg)(d, i);
             })
@@ -200,20 +218,20 @@ function finalChord(svg, chords, containerId) {
             });
 		
 	/*Show all chords*/
-	chords.transition().duration(1000)
+	chords.transition().duration(100)
 		.style("opacity", opacityValueBase);
 
 	/*Show all the text*/
 	d3.selectAll("g.group").selectAll("line")
-		.transition().duration(1000)
+		.transition().duration(100)
 		.style("stroke","#000");
 	/*Same for the %'s*/
 	svg.selectAll("g.group")
-		.transition().duration(1000)
+		.transition().duration(100)
 		.selectAll(".tickLabels").style("opacity",1);
 	/*And the Names of each Arc*/	
 	svg.selectAll("g.group")
-		.transition().duration(1000)
+		.transition().duration(100)
 		.selectAll(".titles").style("opacity",1);
 };/*finalChord*/
 

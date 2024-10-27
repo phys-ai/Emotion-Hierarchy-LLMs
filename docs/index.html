@@ -2,8 +2,23 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-	<title>Storytelling with a Chord Diagram - Switching between Phone Brands</title>
-    	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<title>Emotion Hierarchy LLMs</title>
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+    <style>
+        .node circle {
+            stroke: #000;
+            stroke-width: 1.5px;
+        }
+        .node text {
+            pointer-events: none;
+            font-size: 10px;
+            fill: #333;
+        }
+        .link {
+            stroke: #999;
+            stroke-opacity: 0.6;
+        }
+    </style>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
@@ -11,24 +26,23 @@
   </head>
   <body>
     <div id="body">
-        <div class="chart-container">
+            <div class="custom-select-wrapper">
+                <div class="custom-select">
+                    <select id="treeSelector"></select>
+                </div>
+            </div>
             <div id="chart0"></div>
+            <div class="custom-select-wrapper">
+                <div class="custom-select">
+                    <select id="matrixSelector"></select>
+                </div>
+            </div>
             <div id="chart1"></div>
-            <div id="chart2"></div>
-            <div id="chart3"></div>
-            <div id="chart4"></div>
-            <div id="chart5"></div>
-        </div>
     </div>
 
-    <style>
-        .chart-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-gap: 0px;
-        }
-    </style>
-    <script src="matrix.js"></script>
+    <script src="tree_data.js"></script>
+    <script src="tree_graph.js"></script>
+    <script src="confusion_matrix.js"></script>
     <script src="chords.js"></script>
    </body>
 </html>
