@@ -7,9 +7,9 @@ var treeDatas = [
     { data: treeData_gpt2, label: "GPT2" },
 ];
 
-var selector = d3.select("#treeSelector");
+var selector0 = d3.select("#treeSelector");
 treeDatas.forEach(function(treeData, index) {
-    selector.append("option")
+    selector0.append("option")
         .attr("value", index)
         .text(treeData.label);
 });
@@ -21,7 +21,7 @@ var currentIndex = 0;
 d3.select("#chart0").selectAll("*").remove();
 drawTree(treeDatas[currentIndex].data);
 
-selector.on("change", function() {
+selector0.on("change", function() {
     currentIndex = +this.value;
     d3.select("#chart0").selectAll("*").remove();
     drawTree(treeDatas[currentIndex].data);
