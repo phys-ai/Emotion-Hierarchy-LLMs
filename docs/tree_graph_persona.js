@@ -20,8 +20,8 @@ treeDatas_persona.forEach(function(treeData_persona, index2) {
         .text(treeData_persona.label);
 });
 
-var width2 = 1600;
-var height2 = 500;
+var width2 = 1700;
+var height2 = 700;
 
 var currentIndex_persona = 0;
 d3.select("#chart2").selectAll("*").remove();
