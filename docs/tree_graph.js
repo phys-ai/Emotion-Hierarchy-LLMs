@@ -14,8 +14,8 @@ treeDatas.forEach(function(treeData, index0) {
         .text(treeData.label);
 });
 
-var width = 1200;  // Canvas width
-var height = 340; // Canvas height
+var width0 = 1200;
+var height0 = 340;
 
 var currentIndex = 0;
 d3.select("#chart0").selectAll("*").remove();
@@ -43,17 +43,17 @@ function drawTree(graphData) {
     const maxY = Math.max(...yValues) + 60;
 
     graphData.nodes.forEach(node => {
-        node.x = scale(node.x, minX, maxX, 0, width);
-        node.y = scale(node.y, minY, maxY, 0, height);
+        node.x = scale(node.x, minX, maxX, 0, width0);
+        node.y = scale(node.y, minY, maxY, 0, height0);
     });
 
     const svg = d3.select("#chart0").append("svg")
-        .attr("width", width)
-        .attr("height", height);
+        .attr("width", width0)
+        .attr("height", height0);
 
     // Center of the SVG
-    const centerX = width / 2;
-    const centerY = height / 2;
+    const centerX = width0 / 2;
+    const centerY = height0 / 2;
     const radius = 150; // Radius of the initial circular layout
 
     // Sort nodes by color for circular arrangement
