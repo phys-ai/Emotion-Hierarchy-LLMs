@@ -1,4 +1,4 @@
-const graphData = treeData_llama405
+var graphData = treeData_llama405
 
 var treeDatas = [
     { data: treeData_llama405, label: "Llama-405B" },
@@ -34,42 +34,42 @@ function scale(value, minOriginal, maxOriginal, minTarget, maxTarget) {
 
 function drawTree(graphData) {
 
-    const xValues = graphData.nodes.map(node => node.x);
-    const yValues = graphData.nodes.map(node => node.y);
+    var xValues = graphData.nodes.map(node => node.x);
+    var yValues = graphData.nodes.map(node => node.y);
 
-    const minX = Math.min(...xValues) - 60;
-    const maxX = Math.max(...xValues) + 60;
-    const minY = Math.min(...yValues) - 60;
-    const maxY = Math.max(...yValues) + 60;
+    var minX = Math.min(...xValues) - 60;
+    var maxX = Math.max(...xValues) + 60;
+    var minY = Math.min(...yValues) - 60;
+    var maxY = Math.max(...yValues) + 60;
 
     graphData.nodes.forEach(node => {
         node.x = scale(node.x, minX, maxX, 0, width0);
         node.y = scale(node.y, minY, maxY, 0, height0);
     });
 
-    const svg = d3.select("#chart0").append("svg")
+    var svg = d3.select("#chart0").append("svg")
         .attr("width", width0)
         .attr("height", height0);
 
     // Center of the SVG
-    const centerX = width0 / 2;
-    const centerY = height0 / 2;
-    const radius = 150; // Radius of the initial circular layout
+    var centerX = width0 / 2;
+    var centerY = height0 / 2;
+    var radius = 150; // Radius of the initial circular layout
 
     // Sort nodes by color for circular arrangement
     graphData.nodes.sort((a, b) => a.color.localeCompare(b.color));
 
     // Calculate the angle increment for arranging nodes in a circle
-    const angleIncrement = (2 * Math.PI) / graphData.nodes.length;
+    var angleIncrement = (2 * Math.PI) / graphData.nodes.length;
 
     // Assign initial circular positions based on sorted colors
     graphData.nodes.forEach((node, index1) => {
-        const angle = index1 * angleIncrement;
+        var angle = index1 * angleIncrement;
         node.initialX = centerX + radius * Math.cos(angle);
         node.initialY = centerY + radius * Math.sin(angle);
     });
 
-    const link = svg.selectAll(".link")
+    var link = svg.selectAll(".link")
         .data(graphData.links)
         .enter().append("line")
         .attr("class", "link")
@@ -82,7 +82,7 @@ function drawTree(graphData) {
         .attr("x2", d => graphData.nodes.find(node => node.id === d.target).initialX)
         .attr("y2", d => graphData.nodes.find(node => node.id === d.target).initialY);
 
-    const node = svg.selectAll(".node")
+    var node = svg.selectAll(".node")
         .data(graphData.nodes)
         .enter().append("g")
         .attr("class", "node")
@@ -95,7 +95,7 @@ function drawTree(graphData) {
         .style("fill", d => d.color)
         .style("stroke", "none");
 
-    const labels = node.append("text")
+    var labels = node.append("text")
         .attr("text-anchor", "middle")
         .attr("dy", ".35em")
         .attr("dx", 0)
