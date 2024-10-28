@@ -53,7 +53,7 @@ function drawTree(graphData) {
         node.y = scale(node.y, minY, maxY, 0, height2);
     });
 
-    var svg = d3.select("#chart2").append("svg")
+    var svg_p = d3.select("#chart2").append("svg")
         .attr("width", width2)
         .attr("height", height2);
 
@@ -75,7 +75,7 @@ function drawTree(graphData) {
         node.initialY = centerY + radius * Math.sin(angle);
     });
 
-    var link = svg.selectAll(".link")
+    var link = svg_p.selectAll(".link")
         .data(graphData.links)
         .enter().append("line")
         .attr("class", "link")
@@ -88,7 +88,7 @@ function drawTree(graphData) {
         .attr("x2", d => graphData.nodes.find(node => node.id === d.target).initialX)
         .attr("y2", d => graphData.nodes.find(node => node.id === d.target).initialY);
 
-    var node = svg.selectAll(".node")
+    var node = svg_p.selectAll(".node")
         .data(graphData.nodes)
         .enter().append("g")
         .attr("class", "node")
