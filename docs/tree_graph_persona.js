@@ -14,10 +14,10 @@ var treeDatas_persona = [
 ];
 
 var selector2 = d3.select("#treeSelector_persona");
-treeDatas_persona.forEach(function(treeData, index2) {
+treeDatas_persona.forEach(function(treeData_persona, index2) {
     selector2.append("option")
         .attr("value", index2)
-        .text(treeData.label);
+        .text(treeData_persona.label);
 });
 
 var width2 = 1400;
