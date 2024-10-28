@@ -1,5 +1,3 @@
-var graphData = treeData_llama405
-
 var treeDatas = [
     { data: treeData_llama405, label: "Llama-405B" },
     { data: treeData_llama70, label: "Llama-70B" },

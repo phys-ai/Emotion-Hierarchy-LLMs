@@ -25,12 +25,12 @@ var height2 = 400;
 
 var currentIndex_persona = 0;
 d3.select("#chart2").selectAll("*").remove();
-drawTree(treeDatas_persona[currentIndex_persona].data);
+drawTree_p(treeDatas_persona[currentIndex_persona].data);
 
 selector2.on("change", function() {
     currentIndex_persona = +this.value;
     d3.select("#chart2").selectAll("*").remove();
-    drawTree(treeDatas_persona[currentIndex_persona].data);
+    drawTree_p(treeDatas_persona[currentIndex_persona].data);
 });
 
 
@@ -38,19 +38,19 @@ function scale(value, minOriginal, maxOriginal, minTarget, maxTarget) {
     return ((value - minOriginal) / (maxOriginal - minOriginal)) * (maxTarget - minTarget) + minTarget;
 }
 
-function drawTree(graphData) {
+function drawTree_p(graphData_p) {
 
-    var xValues = graphData.nodes.map(node => node.x);
-    var yValues = graphData.nodes.map(node => node.y);
+    var xValues_p = graphData_p.nodes.map(node => node.x);
+    var yValues_p = graphData_p.nodes.map(node => node.y);
 
-    var minX = Math.min(...xValues) - 60;
-    var maxX = Math.max(...xValues) + 60;
-    var minY = Math.min(...yValues) - 60;
-    var maxY = Math.max(...yValues) + 60;
+    var minX_p = Math.min(...xValues_p) - 60;
+    var maxX_p = Math.max(...xValues_p) + 60;
+    var minY_p = Math.min(...yValues_p) - 60;
+    var maxY_p = Math.max(...yValues_p) + 60;
 
-    graphData.nodes.forEach(node => {
-        node.x = scale(node.x, minX, maxX, 0, width2);
-        node.y = scale(node.y, minY, maxY, 0, height2);
+    graphData_p.nodes.forEach(node => {
+        node.x = scale(node.x, minX_p, maxX_p, 0, width2);
+        node.y = scale(node.y, minY_p, maxY_p, 0, height2);
     });
 
     var svg_p = d3.select("#chart2").append("svg")
@@ -63,45 +63,45 @@ function drawTree(graphData) {
     var radius = 150; // Radius of the initial circular layout
 
     // Sort nodes by color for circular arrangement
-    graphData.nodes.sort((a, b) => a.color.localeCompare(b.color));
+    graphData_p.nodes.sort((a, b) => a.color.localeCompare(b.color));
 
     // Calculate the angle increment for arranging nodes in a circle
-    var angleIncrement = (2 * Math.PI) / graphData.nodes.length;
+    var angleIncrement = (2 * Math.PI) / graphData_p.nodes.length;
 
     // Assign initial circular positions based on sorted colors
-    graphData.nodes.forEach((node, index1) => {
+    graphData_p.nodes.forEach((node, index1) => {
         var angle = index1 * angleIncrement;
         node.initialX = centerX + radius * Math.cos(angle);
         node.initialY = centerY + radius * Math.sin(angle);
     });
 
-    var link = svg_p.selectAll(".link")
-        .data(graphData.links)
+    var link_p = svg_p.selectAll(".link")
+        .data(graphData_p.links)
         .enter().append("line")
         .attr("class", "link")
         .style("opacity", 0.5)
         .style("stroke", "#999")
         .style("stroke-width", 1)
         // Start the links from circular positions
-        .attr("x1", d => graphData.nodes.find(node => node.id === d.source).initialX)
-        .attr("y1", d => graphData.nodes.find(node => node.id === d.source).initialY)
-        .attr("x2", d => graphData.nodes.find(node => node.id === d.target).initialX)
-        .attr("y2", d => graphData.nodes.find(node => node.id === d.target).initialY);
+        .attr("x1", d => graphData_p.nodes.find(node => node.id === d.source).initialX)
+        .attr("y1", d => graphData_p.nodes.find(node => node.id === d.source).initialY)
+        .attr("x2", d => graphData_p.nodes.find(node => node.id === d.target).initialX)
+        .attr("y2", d => graphData_p.nodes.find(node => node.id === d.target).initialY);
 
-    var node = svg_p.selectAll(".node")
-        .data(graphData.nodes)
+    var node_p = svg_p.selectAll(".node")
+        .data(graphData_p.nodes)
         .enter().append("g")
         .attr("class", "node")
         // Start nodes at circular positions
         .attr("transform", d => `translate(${d.initialX}, ${d.initialY})`);
 
-    node.append("circle")
+    node_p.append("circle")
         .attr("r", 10)
         .style("opacity", 0.7)
         .style("fill", d => d.color)
         .style("stroke", "none");
 
-    var labels = node.append("text")
+    var labels_p = node_p.append("text")
         .attr("text-anchor", "middle")
         .attr("dy", ".35em")
         .attr("dx", 0)
@@ -114,14 +114,12 @@ function drawTree(graphData) {
         });
 
     // Function to highlight edges connected to a specific node
-    function highlightEdges(nodeId) {
-        // Reset all edges to default styling
-        link.style("stroke", "#999")
+    function highlightEdges(nodeId_p) {
+        link_p.style("stroke", "#999")
             .style("stroke-width", 3)
             .style("opacity", 0.5);
 
-        // Highlight the edges connected to the clicked node
-        link.filter(d => d.source === nodeId || d.target === nodeId)
+        link_p.filter(d => d.source === nodeId_p || d.target === nodeId_p)
             .style("stroke", "#f00") // Change to a different color (e.g., red)
             .style("stroke-width", 3) // Increase stroke width for visibility
             .style("opacity", 1);
@@ -129,14 +127,14 @@ function drawTree(graphData) {
 
     // Animate the transition to final positions
     function animateGraph() {
-        link.transition()
+        link_p.transition()
             .duration(500)
-            .attr("x1", d => graphData.nodes.find(node => node.id === d.source).x)
-            .attr("y1", d => graphData.nodes.find(node => node.id === d.source).y)
-            .attr("x2", d => graphData.nodes.find(node => node.id === d.target).x)
-            .attr("y2", d => graphData.nodes.find(node => node.id === d.target).y);
+            .attr("x1", d => graphData_p.nodes.find(node => node.id === d.source).x)
+            .attr("y1", d => graphData_p.nodes.find(node => node.id === d.source).y)
+            .attr("x2", d => graphData_p.nodes.find(node => node.id === d.target).x)
+            .attr("y2", d => graphData_p.nodes.find(node => node.id === d.target).y);
 
-        node.transition()
+        node_p.transition()
             .duration(500)
             .attr("transform", d => `translate(${d.x}, ${d.y})`);
     }
