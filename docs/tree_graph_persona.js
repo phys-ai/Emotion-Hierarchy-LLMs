@@ -1,30 +1,36 @@
-const graphData = treeData_llama405
-
-var treeDatas = [
-    { data: treeData_llama405, label: "Llama-405B" },
-    { data: treeData_llama70, label: "Llama-70B" },
-    { data: treeData_llama8, label: "Llama-8B" },
-    { data: treeData_gpt2, label: "GPT2" },
+var treeDatas_persona = [
+    { data: treeData_neutral, label: "Neutral" },
+    { data: treeData_asd, label: "ASD" },
+    { data: treeData_age10, label: "10-year-old" },
+    { data: treeData_age30, label: "30-year-old" },
+    { data: treeData_age70, label: "70-year-old" },
+    { data: treeData_female, label: "Female" },
+    { data: treeData_male, label: "Male" },
+    { data: treeData_disable, label: "Physically-disabled" }, 
+    { data: treeData_income_low, label: "Low income" }, 
+    { data: treeData_income_high, label: "High income" },
+    { data: treeData_education_low, label: "Low education" }, 
+    { data: treeData_education_high, label: "High education" }
 ];
 
-var selector0 = d3.select("#treeSelector");
-treeDatas.forEach(function(treeData, index0) {
-    selector0.append("option")
-        .attr("value", index0)
+var selector2 = d3.select("#treeSelector_persona");
+treeDatas_persona.forEach(function(treeData, index2) {
+    selector2.append("option")
+        .attr("value", index2)
         .text(treeData.label);
 });
 
-var width = 1200;  // Canvas width
-var height = 340; // Canvas height
+var width = 1400;  // Canvas width
+var height = 400; // Canvas height
 
 var currentIndex = 0;
-d3.select("#chart0").selectAll("*").remove();
-drawTree(treeDatas[currentIndex].data);
+d3.select("#chart2").selectAll("*").remove();
+drawTree(treeDatas_persona[currentIndex].data);
 
-selector0.on("change", function() {
+selector2.on("change", function() {
     currentIndex = +this.value;
-    d3.select("#chart0").selectAll("*").remove();
-    drawTree(treeDatas[currentIndex].data);
+    d3.select("#chart2").selectAll("*").remove();
+    drawTree(treeDatas_persona[currentIndex].data);
 });
 
 
@@ -47,7 +53,7 @@ function drawTree(graphData) {
         node.y = scale(node.y, minY, maxY, 0, height);
     });
 
-    const svg = d3.select("#chart0").append("svg")
+    const svg = d3.select("#chart2").append("svg")
         .attr("width", width)
         .attr("height", height);
 
