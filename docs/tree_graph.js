@@ -13,7 +13,7 @@ treeDatas.forEach(function(treeData, index0) {
 });
 
 var width0 = 1200;
-var height0 = 340;
+var height0 = 400;
 
 var currentIndex = 0;
 d3.select("#chart0").selectAll("*").remove();
