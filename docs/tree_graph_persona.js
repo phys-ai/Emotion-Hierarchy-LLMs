@@ -23,14 +23,14 @@ treeDatas_persona.forEach(function(treeData_persona, index2) {
 var width2 = 1400;
 var height2 = 400;
 
-var currentIndex = 0;
+var currentIndex_persona = 0;
 d3.select("#chart2").selectAll("*").remove();
-drawTree(treeDatas_persona[currentIndex].data);
+drawTree(treeDatas_persona[currentIndex_persona].data);
 
 selector2.on("change", function() {
-    currentIndex = +this.value;
+    currentIndex_persona = +this.value;
     d3.select("#chart2").selectAll("*").remove();
-    drawTree(treeDatas_persona[currentIndex].data);
+    drawTree(treeDatas_persona[currentIndex_persona].data);
 });
 
 
