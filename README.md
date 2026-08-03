@@ -211,5 +211,4 @@ Maya Okawa and Bo Zhao contributed equally.
 
 ## License
 
-Add a repository license before making this directory public. No license is
-asserted by this draft.
+This project is released under the [MIT License](LICENSE).
