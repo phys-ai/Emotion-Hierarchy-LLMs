@@ -1,0 +1,10 @@
+# Versions used to verify the cleaned public pipeline on Python 3.13.7.
+# This is not a recovered lockfile from the original NNsight experiments.
+-e .[inference]
+accelerate==1.13.0
+matplotlib==3.10.8
+networkx==3.6.1
+numpy==2.4.4
+sentencepiece==0.2.2
+torch==2.11.0
+transformers==4.46.1

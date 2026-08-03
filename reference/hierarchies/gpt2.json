@@ -1,0 +1,21 @@
+{
+  "name": "Emotion Hierarchy",
+  "children": [
+    {
+      "name": "fear",
+      "description": "fear",
+      "children": [
+        {
+          "name": "anger",
+          "description": "anger",
+          "size": 1
+        },
+        {
+          "name": "sadness",
+          "description": "sadness",
+          "size": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,10 +1,8 @@
-cache/
-cache1/
-figures/
-_old/
-data/
-*.key
-.ipynb_checkpoints/
-.DS_Store
-notebooks/
 __pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+dist/
+*.egg-info/
+results/
+model_cache/

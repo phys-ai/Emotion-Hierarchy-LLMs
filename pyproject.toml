@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emotion-hierarchy-llms"
+version = "0.1.0"
+description = "Minimal reproduction code for emotion hierarchies in language models"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "matplotlib>=3.8",
+  "networkx>=3.2",
+  "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+inference = [
+  "accelerate>=0.30",
+  "sentencepiece>=0.2",
+  "torch>=2.2",
+  "transformers>=4.46",
+]
+nnsight = [
+  "nnsight>=0.3",
+]
+
+[project.scripts]
+emotion-hierarchy = "emotion_hierarchy.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["emotion_hierarchy*"]

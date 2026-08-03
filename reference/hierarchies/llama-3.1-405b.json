@@ -1,0 +1,336 @@
+{
+  "name": "Emotion Hierarchy",
+  "children": [
+    {
+      "name": "happiness",
+      "description": "happiness",
+      "children": [
+        {
+          "name": "joy",
+          "description": "joy",
+          "children": [
+            {
+              "name": "amusement",
+              "description": "amusement",
+              "size": 1
+            },
+            {
+              "name": "delight",
+              "description": "delight",
+              "size": 1
+            },
+            {
+              "name": "triumph",
+              "description": "triumph",
+              "size": 1
+            },
+            {
+              "name": "passion",
+              "description": "passion",
+              "size": 1
+            },
+            {
+              "name": "surprise",
+              "description": "surprise",
+              "size": 1
+            }
+          ]
+        },
+        {
+          "name": "bliss",
+          "description": "bliss",
+          "size": 1
+        },
+        {
+          "name": "enjoyment",
+          "description": "enjoyment",
+          "size": 1
+        },
+        {
+          "name": "satisfaction",
+          "description": "satisfaction",
+          "children": [
+            {
+              "name": "pleasure",
+              "description": "pleasure",
+              "size": 1
+            }
+          ]
+        },
+        {
+          "name": "excitement",
+          "description": "excitement",
+          "children": [
+            {
+              "name": "enthusiasm",
+              "description": "enthusiasm",
+              "size": 1
+            },
+            {
+              "name": "thrill",
+              "description": "thrill",
+              "size": 1
+            }
+          ]
+        },
+        {
+          "name": "pride",
+          "description": "pride",
+          "size": 1
+        },
+        {
+          "name": "relief",
+          "description": "relief",
+          "size": 1
+        },
+        {
+          "name": "love",
+          "description": "love",
+          "children": [
+            {
+              "name": "hope",
+              "description": "hope",
+              "children": [
+                {
+                  "name": "optimism",
+                  "description": "optimism",
+                  "size": 1
+                }
+              ]
+            },
+            {
+              "name": "affection",
+              "description": "affection",
+              "size": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "anger",
+      "description": "anger",
+      "children": [
+        {
+          "name": "irritation",
+          "description": "irritation",
+          "size": 1
+        },
+        {
+          "name": "annoyance",
+          "description": "annoyance",
+          "size": 1
+        },
+        {
+          "name": "frustration",
+          "description": "frustration",
+          "size": 1
+        },
+        {
+          "name": "rage",
+          "description": "rage",
+          "size": 1
+        },
+        {
+          "name": "fury",
+          "description": "fury",
+          "size": 1
+        },
+        {
+          "name": "wrath",
+          "description": "wrath",
+          "size": 1
+        },
+        {
+          "name": "spite",
+          "description": "spite",
+          "size": 1
+        },
+        {
+          "name": "resentment",
+          "description": "resentment",
+          "size": 1
+        },
+        {
+          "name": "disgust",
+          "description": "disgust",
+          "size": 1
+        },
+        {
+          "name": "contempt",
+          "description": "contempt",
+          "size": 1
+        },
+        {
+          "name": "jealousy",
+          "description": "jealousy",
+          "children": [
+            {
+              "name": "envy",
+              "description": "envy",
+              "size": 1
+            }
+          ]
+        },
+        {
+          "name": "hurt",
+          "description": "hurt",
+          "size": 1
+        },
+        {
+          "name": "rejection",
+          "description": "rejection",
+          "size": 1
+        }
+      ]
+    },
+    {
+      "name": "sadness",
+      "description": "sadness",
+      "children": [
+        {
+          "name": "caring",
+          "description": "caring",
+          "size": 1
+        },
+        {
+          "name": "anguish",
+          "description": "anguish",
+          "size": 1
+        },
+        {
+          "name": "despair",
+          "description": "despair",
+          "size": 1
+        },
+        {
+          "name": "grief",
+          "description": "grief",
+          "size": 1
+        },
+        {
+          "name": "sorrow",
+          "description": "sorrow",
+          "size": 1
+        },
+        {
+          "name": "disappointment",
+          "description": "disappointment",
+          "size": 1
+        },
+        {
+          "name": "regret",
+          "description": "regret",
+          "children": [
+            {
+              "name": "guilt",
+              "description": "guilt",
+              "children": [
+                {
+                  "name": "shame",
+                  "description": "shame",
+                  "size": 1
+                }
+              ]
+            },
+            {
+              "name": "remorse",
+              "description": "remorse",
+              "size": 1
+            }
+          ]
+        },
+        {
+          "name": "loneliness",
+          "description": "loneliness",
+          "children": [
+            {
+              "name": "isolation",
+              "description": "isolation",
+              "size": 1
+            }
+          ]
+        },
+        {
+          "name": "defeat",
+          "description": "defeat",
+          "size": 1
+        },
+        {
+          "name": "sympathy",
+          "description": "sympathy",
+          "children": [
+            {
+              "name": "distress",
+              "description": "distress",
+              "size": 1
+            }
+          ]
+        },
+        {
+          "name": "longing",
+          "description": "longing",
+          "children": [
+            {
+              "name": "desire",
+              "description": "desire",
+              "size": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fear",
+      "description": "fear",
+      "children": [
+        {
+          "name": "dread",
+          "description": "dread",
+          "size": 1
+        },
+        {
+          "name": "worry",
+          "description": "worry",
+          "size": 1
+        },
+        {
+          "name": "anxiety",
+          "description": "anxiety",
+          "children": [
+            {
+              "name": "agony",
+              "description": "agony",
+              "size": 1
+            }
+          ]
+        },
+        {
+          "name": "dismay",
+          "description": "dismay",
+          "size": 1
+        },
+        {
+          "name": "panic",
+          "description": "panic",
+          "size": 1
+        },
+        {
+          "name": "terror",
+          "description": "terror",
+          "size": 1
+        },
+        {
+          "name": "horror",
+          "description": "horror",
+          "size": 1
+        },
+        {
+          "name": "shock",
+          "description": "shock",
+          "size": 1
+        }
+      ]
+    }
+  ]
+}
