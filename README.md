@@ -70,17 +70,6 @@ For the exact dependency versions used to verify this cleaned pipeline, use
 `pip install -r requirements-verified.txt`. This file is a verification
 environment, not a recovered lockfile from the original NNsight runs.
 
-### Checkpoint security
-
-Only load model checkpoints and shard indexes from sources you trust. Keep
-`trust_remote_code` disabled unless you have reviewed the model's code.
-The [Accelerate checkpoint advisory](https://github.com/advisories/GHSA-4j2p-28q2-5m79)
-has no designated patched release as of October 6, 2026; upgrading to 1.15.0
-alone does not establish that the vulnerable shard-loading code is fixed.
-Untrusted shard indexes can reference files outside the checkpoint directory
-or special files that block loading. Do not load third-party checkpoint
-bundles of unknown provenance, even when remote code is disabled.
-
 Llama 3.1 models are gated on Hugging Face. Full 70B and 405B runs require
 access to the weights and corresponding multi-GPU infrastructure. The GPT-2
 command below is a small end-to-end check, not a reproduction of the Llama
