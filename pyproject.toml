@@ -18,8 +18,8 @@ dependencies = [
 inference = [
   "accelerate>=0.30",
   "sentencepiece>=0.2",
-  "torch>=2.2",
-  "transformers>=4.46",
+  "torch>=2.13.0",
+  "transformers>=5.10.1",
 ]
 nnsight = [
   "nnsight>=0.3",
