@@ -76,8 +76,18 @@ command below is a small end-to-end check, not a reproduction of the Llama
 results.
 
 The paper's Llama runs used NNsight. Install that optional backend with
-`pip install -e '.[inference,nnsight]'` and configure NNsight credentials before
-using `--backend nnsight --remote`.
+`pip install -e '.[inference,nnsight]'` and use `--backend nnsight` locally.
+Remote NNsight inference is temporarily disabled because this client cannot
+validate checkpoint files on the remote worker.
+
+Model loading validates checkpoint indexes and shards before invoking either
+local backend, rejecting directory traversal, escaping symlinks, and special
+files such as named pipes (mitigation for CVE-2026-69112). Hub models are
+downloaded as a snapshot and loaded from that validated local snapshot; this
+can download more files than the previous loader. Keep local checkpoint and
+cache directories under your control during loading. This protects this
+pipeline's loaders; it does not patch Accelerate for other callers, and its
+Dependabot alert remains open pending an upstream fix.
 
 ## Quick check
 

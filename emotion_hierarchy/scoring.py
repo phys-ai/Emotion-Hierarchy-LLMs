@@ -8,6 +8,8 @@ from typing import Iterable
 
 import numpy as np
 
+from .checkpoints import prepare_checkpoint
+
 
 HIERARCHY_SUFFIX = " The emotion in this sentence is"
 RECOGNITION_SUFFIX = "I think the emotion involved in this situation is"
@@ -105,16 +107,16 @@ def score_with_transformers(
     if not prompts:
         raise ValueError("At least one prompt is required")
 
+    checkpoint = prepare_checkpoint(model_name, revision)
     tokenizer = AutoTokenizer.from_pretrained(
-        model_name, revision=revision, trust_remote_code=trust_remote_code
+        checkpoint, trust_remote_code=trust_remote_code
     )
     if tokenizer.pad_token_id is None:
         tokenizer.pad_token = tokenizer.eos_token
     tokenizer.padding_side = "left"
 
     model = AutoModelForCausalLM.from_pretrained(
-        model_name,
-        revision=revision,
+        checkpoint,
         device_map=device_map,
         torch_dtype="auto",
         trust_remote_code=trust_remote_code,
@@ -186,6 +188,11 @@ def score_with_nnsight(
     remote: bool = False,
 ) -> TopTokenArtifact:
     """Run the original NNsight tracing path used for the Llama experiments."""
+    if remote:
+        raise ValueError(
+            "Remote NNsight loading is temporarily disabled because checkpoint "
+            "files on the remote worker cannot be validated. Use local inference."
+        )
     import nnsight
     import torch
     from nnsight import LanguageModel
@@ -195,10 +202,8 @@ def score_with_nnsight(
     if not prompts:
         raise ValueError("At least one prompt is required")
 
-    model_options = {"device_map": device_map}
-    if revision is not None:
-        model_options["revision"] = revision
-    model = LanguageModel(model_name, **model_options)
+    checkpoint = prepare_checkpoint(model_name, revision)
+    model = LanguageModel(checkpoint, device_map=device_map)
 
     probability_batches: list[np.ndarray] = []
     token_id_batches: list[np.ndarray] = []
